@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — OMEII</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .admin-shell{max-width:720px;margin:0 auto}
+  .admin-gate{max-width:380px;margin:80px auto;text-align:center}
+  .admin-gate .field{text-align:left}
+  .status-line{font-size:.85rem;margin-top:14px;padding:10px 14px;border-radius:8px;display:none}
+  .status-line.show{display:block}
+  .status-line.ok{background:var(--sky-tint);color:var(--navy)}
+  .status-line.err{background:#FBE7E7;color:#8A2A2A}
+  .status-line.busy{background:var(--gold-tint);color:#5A4718}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .import-box{border:1px dashed var(--border-strong);border-radius:8px;padding:16px;margin-bottom:18px;background:#fff}
+  .import-box h4{margin:0 0 10px;font-size:.9rem;color:var(--navy)}
+  .import-tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+  .import-tab{font-size:.78rem;padding:6px 12px;border-radius:999px;border:1px solid var(--border-strong);background:transparent;cursor:pointer;color:var(--ink-soft)}
+  .import-tab.is-active{background:var(--navy);border-color:var(--navy);color:#fff}
+  .import-panel{display:none}
+  .import-panel.is-active{display:block}
+  .hint{font-size:.78rem;color:var(--ink-soft);margin-top:4px}
+</style>
+</head>
+<body>
+
+<div class="wrap" style="padding-top:20px"><a class="back-home" href="index.html">&larr; Retour à l'accueil</a></div>
+
+<main>
+  <div class="wrap admin-shell">
+
+    <!-- ===== Écran mot de passe ===== -->
+    <div id="gate" class="admin-gate">
+      <h1>Admin OMEII</h1>
+      <p class="lede center" style="margin:0 auto 24px">Accès réservé au Bureau Dirigeant.</p>
+      <form class="form-card" id="gate-form">
+        <div class="field">
+          <label for="gate-pass">Mot de passe</label>
+          <input type="password" id="gate-pass" autocomplete="off" required>
+        </div>
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Entrer</button>
+        <p class="status-line err" id="gate-error">Mot de passe incorrect.</p>
+      </form>
+    </div>
+
+    <!-- ===== Backoffice (visible après mot de passe) ===== -->
+    <div id="panel" style="display:none">
+      <p class="eyebrow">Backoffice</p>
+      <h1>Ajouter un contenu</h1>
+      <p class="lede">Publie directement sur le site via votre dépôt GitHub — chaque ajout crée un commit, Netlify redéploie automatiquement en une à deux minutes.</p>
+
+      <div class="form-card" style="margin:24px 0">
+        <h3 style="margin-bottom:10px">Connexion GitHub</h3>
+        <p class="hint" style="margin-bottom:12px">
+          Jeton d'accès personnel (scope <code>repo</code> ou <code>contents:write</code> sur ce dépôt uniquement).
+          Il n'est jamais enregistré dans le site — seulement gardé le temps de cette session de navigateur.
+          <a href="https://github.com/settings/tokens?type=beta" target="_blank" rel="noopener">Créer un jeton →</a>
+        </p>
+        <div class="field-row">
+          <div class="field">
+            <label for="gh-owner">Propriétaire du dépôt</label>
+            <input type="text" id="gh-owner" value="investorsring-arch">
+          </div>
+          <div class="field">
+            <label for="gh-repo">Nom du dépôt</label>
+            <input type="text" id="gh-repo" value="OMEII">
+          </div>
+        </div>
+        <div class="field">
+          <label for="gh-branch">Branche</label>
+          <input type="text" id="gh-branch" value="main">
+        </div>
+        <div class="field">
+          <label for="gh-token">Jeton d'accès (token)</label>
+          <input type="password" id="gh-token" autocomplete="off" placeholder="ghp_...">
+        </div>
+      </div>
+
+      <form class="form-card" id="entry-form">
+        <div class="field">
+          <label for="e-title">Titre</label>
+          <input type="text" id="e-title" required>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="e-category">Catégorie</label>
+            <select id="e-category">
+              <option value="etude">Étude</option>
+              <option value="note">Note d'analyse (article)</option>
+              <option value="annonce">Annonce</option>
+              <option value="video">Vidéo</option>
+            </select>
+          </div>
+          <div class="field" id="axis-field">
+            <label for="e-axis">Axe de recherche</label>
+            <select id="e-axis">
+              <option value="economie">Économie</option>
+              <option value="commerce">Commerce international</option>
+              <option value="investissement">Investissement</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="e-date">Date</label>
+          <input type="month" id="e-date" required>
+        </div>
+
+        <div class="field">
+          <label for="e-excerpt">Résumé / texte</label>
+          <textarea id="e-excerpt" placeholder="Se remplit automatiquement si vous importez un fichier — modifiable avant envoi."></textarea>
+        </div>
+
+        <div class="import-box">
+          <h4>Importer depuis…</h4>
+          <div class="import-tabs">
+            <button type="button" class="import-tab is-active" data-import="file">Fichier Word / PDF</button>
+            <button type="button" class="import-tab" data-import="link">Lien URL</button>
+            <button type="button" class="import-tab" data-import="videofile">Vidéo (upload)</button>
+            <button type="button" class="import-tab" data-import="videolink">YouTube / Vimeo / autre</button>
+          </div>
+
+          <div class="import-panel is-active" data-panel="file">
+            <input type="file" id="import-file" accept=".pdf,.docx">
+            <p class="hint">Le texte est extrait automatiquement dans le résumé ci-dessus (modifiable). Le fichier est aussi joint à l'étude/note publiée.</p>
+          </div>
+          <div class="import-panel" data-panel="link">
+            <input type="url" id="import-link" placeholder="https://...">
+            <p class="hint">Enregistré comme lien source — le contenu de la page n'est pas récupéré automatiquement.</p>
+          </div>
+          <div class="import-panel" data-panel="videofile">
+            <input type="file" id="import-video" accept="video/mp4,video/webm">
+            <p class="hint">Déconseillé au-delà de ~20 Mo (dépôt Git peu adapté aux gros fichiers) — préférez un lien YouTube/Vimeo non listé pour les vidéos longues.</p>
+          </div>
+          <div class="import-panel" data-panel="videolink">
+            <input type="url" id="import-videolink" placeholder="Lien d'intégration (embed), ex. https://www.youtube.com/embed/...">
+            <p class="hint">Sur YouTube : bouton Partager → Intégrer, copier uniquement l'URL du <code>src</code>.</p>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Ajouter</button>
+        <p class="status-line" id="entry-status"></p>
+      </form>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-brand">OMEII</p>
+      <p class="footer-meta">Espace de gestion — accès restreint.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.min.js"></script>
+<script>
+  // Mot de passe, onglets, catégories et publication GitHub : indépendants
+  // des bibliothèques d'extraction ci-dessus, pour que la page fonctionne
+  // même si le CDN de pdf.js/mammoth est indisponible (hors-ligne, réseau bloqué...).
+
+  const CORRECT_PASSWORD = "OMEII MANAG287000 VAYMES";
+  const SESSION_KEY = "omeii-admin-unlocked";
+
+  const gate = document.getElementById("gate");
+  const panel = document.getElementById("panel");
+  const gateForm = document.getElementById("gate-form");
+  const gateError = document.getElementById("gate-error");
+
+  function unlock() {
+    gate.style.display = "none";
+    panel.style.display = "block";
+  }
+  if (sessionStorage.getItem(SESSION_KEY) === "1") unlock();
+
+  gateForm.addEventListener("submit", (ev) => {
+    ev.preventDefault();
+    const val = document.getElementById("gate-pass").value.trim();
+    if (val === CORRECT_PASSWORD) {
+      sessionStorage.setItem(SESSION_KEY, "1");
+      gateError.classList.remove("show");
+      unlock();
+    } else {
+      gateError.classList.add("show");
+    }
+  });
+
+  // ---------- Tabs d'import ----------
+  document.querySelectorAll(".import-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".import-tab").forEach((t) => t.classList.remove("is-active"));
+      document.querySelectorAll(".import-panel").forEach((p) => p.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      document.querySelector(`[data-panel="${tab.dataset.import}"]`).classList.add("is-active");
+    });
+  });
+
+  // ---------- Catégorie -> affichage du champ axe ----------
+  const categorySelect = document.getElementById("e-category");
+  const axisField = document.getElementById("axis-field");
+  function syncAxisVisibility() {
+    const showAxis = categorySelect.value === "etude" || categorySelect.value === "note";
+    axisField.style.display = showAxis ? "" : "none";
+  }
+  categorySelect.addEventListener("change", syncAxisVisibility);
+  syncAxisVisibility();
+
+  // ---------- Extraction de texte (PDF / DOCX) ----------
+  const excerptField = document.getElementById("e-excerpt");
+  document.getElementById("import-file").addEventListener("change", async (ev) => {
+    const file = ev.target.files[0];
+    if (!file) return;
+
+    const isDocx = file.name.toLowerCase().endsWith(".docx");
+    const isPdf = file.name.toLowerCase().endsWith(".pdf");
+
+    if ((isDocx && typeof mammoth === "undefined") || (isPdf && typeof pdfjsLib === "undefined")) {
+      setStatus("Extraction automatique indisponible (bibliothèque non chargée) — remplissez le résumé manuellement. Le fichier sera tout de même joint.", "err");
+      return;
+    }
+
+    setStatus("Extraction du texte en cours…", "busy");
+    try {
+      let text = "";
+      if (isDocx) {
+        const buf = await file.arrayBuffer();
+        const result = await mammoth.extractRawText({ arrayBuffer: buf });
+        text = result.value;
+      } else if (isPdf) {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.5.136/pdf.worker.min.js";
+        const buf = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+        const page = await pdf.getPage(1);
+        const content = await page.getTextContent();
+        text = content.items.map((i) => i.str).join(" ");
+      }
+      if (text) excerptField.value = text.trim().slice(0, 400);
+      setStatus("Texte extrait — vérifiez et complétez le résumé avant envoi.", "ok");
+    } catch (e) {
+      setStatus("Impossible d'extraire le texte automatiquement — remplissez le résumé manuellement.", "err");
+    }
+  });
+
+  // ---------- Aide GitHub API ----------
+  function ghHeaders(token) {
+    return {
+      Authorization: `Bearer ${token}`,
+      Accept: "application/vnd.github+json",
+    };
+  }
+  async function ghGetFile(owner, repo, branch, path, token) {
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`, {
+      headers: ghHeaders(token),
+    });
+    if (!res.ok) throw new Error(`Lecture impossible de ${path} (${res.status})`);
+    const data = await res.json();
+    const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ""))));
+    return { sha: data.sha, content };
+  }
+  async function ghPutFile(owner, repo, branch, path, contentStr, sha, message, token, isBinaryBase64) {
+    const contentB64 = isBinaryBase64 ? contentStr : btoa(unescape(encodeURIComponent(contentStr)));
+    const body = { message, content: contentB64, branch };
+    if (sha) body.sha = sha;
+    const res = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`, {
+      method: "PUT",
+      headers: { ...ghHeaders(token), "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.message || `Échec de l'écriture de ${path} (${res.status})`);
+    }
+    return res.json();
+  }
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+  function slugify(text) {
+    return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "").slice(0, 60);
+  }
+
+  function setStatus(msg, kind) {
+    const el = document.getElementById("entry-status");
+    el.textContent = msg;
+    el.className = `status-line show ${kind}`;
+  }
+
+  const DATA_FILES = {
+    etude: "assets/data/publications.json",
+    note: "assets/data/publications.json",
+    annonce: "assets/data/announcements.json",
+    video: "assets/data/videos.json",
+  };
+
+  document.getElementById("entry-form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+
+    const owner = document.getElementById("gh-owner").value.trim();
+    const repo = document.getElementById("gh-repo").value.trim();
+    const branch = document.getElementById("gh-branch").value.trim() || "main";
+    const token = document.getElementById("gh-token").value.trim();
+    if (!token) { setStatus("Renseignez votre jeton d'accès GitHub.", "err"); return; }
+
+    const title = document.getElementById("e-title").value.trim();
+    const category = document.getElementById("e-category").value;
+    const dateVal = document.getElementById("e-date").value; // AAAA-MM
+    const excerpt = excerptField.value.trim();
+    if (!title || !dateVal) { setStatus("Titre et date sont requis.", "err"); return; }
+
+    setStatus("Publication en cours…", "busy");
+
+    try {
+      let fileFieldPath = document.getElementById("import-link").value.trim() || "#";
+      const importedFile = document.getElementById("import-file").files[0];
+      if (importedFile) {
+        setStatus("Envoi du fichier joint…", "busy");
+        const b64 = await fileToBase64(importedFile);
+        const ext = importedFile.name.split(".").pop();
+        const path = `assets/img/uploads/${slugify(title)}-${Date.now()}.${ext}`;
+        await ghPutFile(owner, repo, branch, path, b64, null, `Ajout fichier: ${title}`, token, true);
+        fileFieldPath = path;
+      }
+
+      let videoUrl = document.getElementById("import-videolink").value.trim();
+      const videoFile = document.getElementById("import-video").files[0];
+      if (category === "video" && videoFile) {
+        if (videoFile.size > 20 * 1024 * 1024) {
+          setStatus("Fichier vidéo trop volumineux (> 20 Mo) — utilisez un lien YouTube/Vimeo à la place.", "err");
+          return;
+        }
+        setStatus("Envoi de la vidéo…", "busy");
+        const b64 = await fileToBase64(videoFile);
+        const ext = videoFile.name.split(".").pop();
+        const path = `assets/video/${slugify(title)}-${Date.now()}.${ext}`;
+        await ghPutFile(owner, repo, branch, path, b64, null, `Ajout vidéo: ${title}`, token, true);
+        videoUrl = path;
+      }
+
+      const targetPath = DATA_FILES[category];
+      setStatus("Mise à jour de la publication…", "busy");
+      const { sha, content } = await ghGetFile(owner, repo, branch, targetPath, token);
+      const json = JSON.parse(content);
+
+      let newItem;
+      if (category === "etude" || category === "note") {
+        newItem = {
+          title,
+          axis: document.getElementById("e-axis").value,
+          axisLabel: { economie: "Économie", commerce: "Commerce international", investissement: "Investissement" }[document.getElementById("e-axis").value],
+          date: dateVal,
+          type: category === "etude" ? "Étude" : "Note d'analyse",
+          excerpt,
+          file: fileFieldPath,
+        };
+      } else if (category === "annonce") {
+        newItem = { title, date: dateVal, body: excerpt };
+      } else if (category === "video") {
+        newItem = { title, date: dateVal, url: videoUrl || "#", description: excerpt };
+      }
+
+      json.items.unshift(newItem);
+      await ghPutFile(owner, repo, branch, targetPath, JSON.stringify(json, null, 2), sha, `Backoffice: ajout "${title}"`, token, false);
+
+      setStatus("Publié ! Le site se redéploie automatiquement (1-2 min).", "ok");
+      document.getElementById("entry-form").reset();
+      syncAxisVisibility();
+    } catch (e) {
+      setStatus("Erreur : " + e.message, "err");
+    }
+  });
+</script>
+</body>
+</html>

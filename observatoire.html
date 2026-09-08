@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Observatoire GES — OMEII</title>
+<meta name="description" content="Observatoire GES (Global Economy Surveyor) — marchés, géopolitique, énergie et climat, par OMEII.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/observatoire.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="index.html">
+      <strong>OMEII — Observatoire de l'Économie et de l'Intégration des Investissements / Observatory of Moroccan Economy and Integrated Investments</strong>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a href="publications.html">Publications</a>
+      <a href="observatoire.html" aria-current="page">Observatoire</a>
+      <a href="recherche.html">Recherche</a>
+      <a href="equipe.html">Équipe</a>
+      <a href="adhesion.html">Adhésion</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-right">
+      <a class="site-logo" href="index.html">
+        <img src="assets/img/omeii-logo.png" alt="OMEII — Observatoire de l'Économie et de l'Intégration des Investissements / Observatory of Moroccan Economy and Integrated Investments">
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap"><a class="back-home" href="index.html">&larr; Retour à l'accueil</a></div>
+  <section style="padding-bottom:0">
+    <div class="wrap">
+      <p class="eyebrow">Observatoire</p>
+      <h1>Observatoire GES — Global Economy Surveyor</h1>
+      <p class="lede">Marchés, géopolitique, énergie et climat, suivis en continu par OMEII. Les onglets ci-dessous permettent de circuler entre les différentes vues.</p>
+      <p class="pill" style="margin-top:14px">Données de démonstration — sources et méthodologie à publier au fil des études du Conseil Scientifique</p>
+    </div>
+  </section>
+
+  <section style="padding-top:24px">
+    <div class="wrap">
+<header class="masthead">
+  <div class="mast-inner">
+    <div class="logo">Observatoire <em>GES</em><small>Global Economy Surveyor</small></div>
+    <div class="sep"></div>
+    <div class="tagline">Marchés · Géopolitique<br>Matières premières · Événements</div>
+    <div class="nav-pills">
+      <button class="npill on" onclick="setView('global',this)">Vue globale</button>
+      <button class="npill" onclick="setView('marches',this)">Marchés</button>
+      <button class="npill" onclick="setView('conflits',this)">Conflits</button>
+      <button class="npill" onclick="setView('energie',this)">Énergie</button>
+      <button class="npill" onclick="setView('climat',this)">Climat</button>
+    </div>
+    <div class="mast-right">
+      <div class="upd-badge" id="updBadge">—</div>
+      <button class="live" id="liveBtn" onclick="refreshAllData()" title="Cliquer pour actualiser">EN DIRECT</button>
+      <div class="mdate" id="mdate">—</div>
+    </div>
+  </div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true"><div class="ticker-inner" id="ticker"></div></div>
+
+<div class="page" id="mainPage">
+
+  <!-- ALERT (global) -->
+  <div class="alert view-section" id="sec-alert">
+    <span class="alert-pill">⚡ FLASH</span>
+    <span class="alert-txt" id="alertTxt">Chargement des informations...</span>
+    <button class="alert-btn" onclick="nextAlert()">›</button>
+  </div>
+
+  <!-- HORLOGES (global + marchés) -->
+  <div class="card amber view-section" id="sec-clocks" style="margin-bottom:14px">
+    <div class="card-hd"><span class="card-title">🕐 Horloges mondiales</span><span class="card-sub" id="utc">UTC —</span></div>
+    <div class="clocks" id="clocks"></div>
+  </div>
+
+  <!-- ─── VUE MARCHÉS ─── -->
+  <div class="view-section" id="sec-marches">
+    <div class="sh"><span class="sh-label">Marchés financiers mondiaux</span></div>
+    <div class="g3">
+      <div class="card blue">
+        <div class="card-hd">
+          <span class="card-title">💱 Taux de change</span>
+          <span id="fxApiTag" class="api-tag api-sim">Simulation</span>
+        </div>
+        <div style="padding:0"><table class="fx"><thead><tr><th>Paire</th><th>Taux</th><th>Var. 24h</th><th>52 sem.</th></tr></thead><tbody id="fxBody"></tbody></table></div>
+      </div>
+      <div class="card amber">
+        <div class="card-hd">
+          <span class="card-title">🛢 Matières premières</span>
+          <span class="api-tag api-sim">Simulation</span>
+        </div>
+        <div class="card-body" id="commoBody"></div>
+      </div>
+      <div class="card green">
+        <div class="card-hd">
+          <span class="card-title">📈 Indices boursiers</span>
+          <span class="api-tag api-sim">Simulation</span>
+        </div>
+        <div class="card-body" id="idxBody"></div>
+      </div>
+    </div>
+
+    <!-- Stats macro -->
+    <div class="sh"><span class="sh-label">En chiffres — Économie mondiale</span></div>
+    <div class="g4">
+      <div class="stat"><div class="stat-n" style="color:var(--green)">+3.2%</div><div class="stat-l">Croissance PIB mondial</div><div class="stat-d" style="color:var(--green)">Prévision FMI 2026</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--amber)">4.2%</div><div class="stat-l">Inflation mondiale moy.</div><div class="stat-d" style="color:var(--amber)">En baisse vs 2025</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--blue)">5.25%</div><div class="stat-l">Taux directeur Fed</div><div class="stat-d" style="color:var(--blue)">Inchangé — mai 2026</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--teal)">3.65%</div><div class="stat-l">Taux directeur BCE</div><div class="stat-d" style="color:var(--teal)">Après 2 baisses en 2026</div></div>
+    </div>
+
+    <!-- Indicateurs macro détaillés -->
+    <div class="g2">
+      <div class="card blue">
+        <div class="card-hd"><span class="card-title">🔢 Indicateurs macro</span><span class="card-sub">FMI · OCDE · BAM · 2026</span></div>
+        <div class="card-body" id="macroBody"></div>
+      </div>
+      <div class="card amber">
+        <div class="card-hd"><span class="card-title">🌡 Baromètre financier</span><span class="card-sub">Score / 100</span></div>
+        <div class="card-body" id="baroFinBody"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── VUE CONFLITS ─── -->
+  <div class="view-section" id="sec-conflits">
+    <div class="sh"><span class="sh-label">Carte mondiale des tensions géopolitiques</span></div>
+    <div class="gmap">
+      <div class="map-wrap">
+        <div class="map-controls">
+          <span style="font-family:var(--fm);font-size:9px;color:var(--ink4);letter-spacing:.06em">AFFICHER :</span>
+          <button class="mf war on" onclick="toggleMapFilter(this,'war')">🔴 Conflits actifs</button>
+          <button class="mf tension on" onclick="toggleMapFilter(this,'tension')">🟡 Zones de tension</button>
+          <button class="mf watch on" onclick="toggleMapFilter(this,'watch')">🔵 Sous surveillance</button>
+          <span style="margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--ink5)">Cliquer un marqueur pour les détails</span>
+        </div>
+        <div id="mapContainer" style="width:100%;background:#C8DFF0;position:relative;min-height:420px">
+          <div id="mapLoading" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;color:var(--ink4)">Chargement de la carte mondiale…</div>
+          <svg id="worldSvg" style="width:100%;display:block"></svg>
+        </div>
+        <div class="map-legend">
+          <div class="ml-item"><div class="ml-dot" style="background:var(--red)"></div>Conflit armé actif</div>
+          <div class="ml-item"><div class="ml-dot" style="background:var(--amber)"></div>Zone de tension</div>
+          <div class="ml-item"><div class="ml-dot" style="background:var(--blue)"></div>Sous surveillance</div>
+          <div style="margin-left:auto;font-family:var(--fm);font-size:9px;color:var(--ink5)">Sources : ACLED · ONU · OSCE · ICG</div>
+        </div>
+      </div>
+      <div class="card red">
+        <div class="card-hd"><span class="card-title">⚠️ Zones actives</span><span class="card-sub" id="zcount">10 zones</span></div>
+        <div class="card-body" style="max-height:490px;overflow-y:auto" id="zonePanel"></div>
+      </div>
+    </div>
+
+    <!-- Stats conflits -->
+    <div class="g4">
+      <div class="stat"><div class="stat-n" style="color:var(--red)">58</div><div class="stat-l">Conflits armés actifs</div><div class="stat-d" style="color:var(--red)">↑ +5 vs 2024</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--amber)">122M</div><div class="stat-l">Personnes déplacées</div><div class="stat-d" style="color:var(--amber)">Record historique — HCR 2026</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--blue)">4</div><div class="stat-l">Crises nucléaires actives</div><div class="stat-d" style="color:var(--blue)">Iran · Corée · Russie · Pakistan</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--green)">38</div><div class="stat-l">Missions ONU de paix</div><div class="stat-d" style="color:var(--green)">86 000 casques bleus</div></div>
+    </div>
+  </div>
+
+  <!-- ─── VUE ÉNERGIE ─── -->
+  <div class="view-section" id="sec-energie">
+    <div class="sh"><span class="sh-label">Marchés de l'énergie mondiale</span></div>
+    <div class="g2">
+      <div class="card orange">
+        <div class="card-hd"><span class="card-title">⚡ Prix de l'énergie</span><span class="card-sub">Données indicatives · Mai 2026</span></div>
+        <div class="card-body">
+          <div class="energy-grid" id="energyGrid"></div>
+        </div>
+      </div>
+      <div class="card blue">
+        <div class="card-hd"><span class="card-title">🌐 Flux & Dépendances</span><span class="card-sub">Géopolitique énergétique</span></div>
+        <div class="card-body" id="energyGeoBody"></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card teal">
+        <div class="card-hd"><span class="card-title">☀️ Énergies renouvelables</span><span class="card-sub">Capacité installée mondiale</span></div>
+        <div class="card-body" id="renewBody"></div>
+      </div>
+      <div class="card red">
+        <div class="card-hd"><span class="card-title">🌡 Stress énergétique</span><span class="card-sub">Score / 100 par région</span></div>
+        <div class="card-body" id="energyStressBody"></div>
+      </div>
+    </div>
+    <div class="g4">
+      <div class="stat"><div class="stat-n" style="color:var(--orange)">89.4</div><div class="stat-l">Pétrole mondial (Mb/j)</div><div class="stat-d" style="color:var(--ink5)">Production OPEP+ + hors OPEP</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--amber)">$88.60</div><div class="stat-l">Brent spot ($/bbl)</div><div class="stat-d" style="color:var(--amber)">Indicatif — ICE Londres</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--green)">38%</div><div class="stat-l">Part des renouvelables</div><div class="stat-d" style="color:var(--green)">Production électrique mondiale</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--blue)">440</div><div class="stat-l">Réacteurs nucléaires actifs</div><div class="stat-d" style="color:var(--blue)">+18 en construction</div></div>
+    </div>
+  </div>
+
+  <!-- ─── VUE CLIMAT ─── -->
+  <div class="view-section" id="sec-climat">
+    <div class="sh"><span class="sh-label">Surveillance climatique & alertes environnementales</span></div>
+    <div class="g3">
+      <div class="card teal" style="grid-column:span 2">
+        <div class="card-hd"><span class="card-title">🌪 Alertes météo & catastrophes actives</span><span class="card-sub">WMO · OCHA · Copernicus · Mai 2026</span></div>
+        <div class="card-body" id="climateAlerts"></div>
+      </div>
+      <div class="card blue">
+        <div class="card-hd"><span class="card-title">🌡 Indicateurs planétaires</span><span class="card-sub">NASA · GIEC · NOAA</span></div>
+        <div class="card-body" id="climateStats"></div>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card red">
+        <div class="card-hd"><span class="card-title">🌍 Baromètre climatique</span><span class="card-sub">Score / 100</span></div>
+        <div class="card-body" id="baroClimBody"></div>
+      </div>
+      <div class="card amber">
+        <div class="card-hd"><span class="card-title">📉 Impact économique du climat</span><span class="card-sub">Banque Mondiale · Swiss Re 2026</span></div>
+        <div class="card-body" id="climEcoBody"></div>
+      </div>
+    </div>
+    <div class="g4">
+      <div class="stat"><div class="stat-n" style="color:var(--red)">+1.38°C</div><div class="stat-l">Anomalie temp. globale</div><div class="stat-d" style="color:var(--red)">vs préind. — NASA GISS 2026</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--amber)">426 ppm</div><div class="stat-l">CO₂ atmosphérique</div><div class="stat-d" style="color:var(--amber)">Record — NOAA Mauna Loa</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--blue)">-3.1 M km²</div><div class="stat-l">Glace Arctique perdue</div><div class="stat-d" style="color:var(--blue)">vs moyenne 1981-2010</div></div>
+      <div class="stat"><div class="stat-n" style="color:var(--teal)">$340 Md</div><div class="stat-l">Pertes climat 2025</div><div class="stat-d" style="color:var(--teal)">Swiss Re Institute</div></div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION ÉVÉNEMENTS (global + conflits + énergie + climat) ─── -->
+  <div class="view-section" id="sec-events">
+    <div class="sh"><span class="sh-label">Événements & Analyse mondiale</span></div>
+    <div class="gevents">
+      <div class="card teal">
+        <div class="card-hd">
+          <span class="card-title">📰 Événements marquants</span>
+          <div class="ev-filters">
+            <button class="ef-pill active-all" onclick="filterEvents('all',this)">Tout</button>
+            <button class="ef-pill" onclick="filterEvents('cs',this)">🔴 Sécurité</button>
+            <button class="ef-pill" onclick="filterEvents('ce',this)">🟢 Économie</button>
+            <button class="ef-pill" onclick="filterEvents('cg',this)">🔵 Géopo.</button>
+            <button class="ef-pill" onclick="filterEvents('cc',this)">🟡 Climat</button>
+            <button class="ef-pill" onclick="filterEvents('cn',this)">🟠 Énergie</button>
+          </div>
+        </div>
+        <div class="card-body" id="evList"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card red">
+          <div class="card-hd"><span class="card-title">🌡 Baromètre mondial</span><span class="card-sub">Score / 100</span></div>
+          <div class="card-body" id="baroBody"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="note-box">
+        <strong>Pour aller plus loin :</strong> les méthodes et sources derrière chaque indicateur seront détaillées dans les <a href="publications.html">publications</a> correspondantes, validées par le Conseil Scientifique.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-brand">OMEII</p>
+      <p class="footer-meta">Association à but non lucratif régie par le Dahir n° 1-58-376 portant réglementation du droit d'association.</p>
+      <a href="admin.html" class="footer-admin-link">Admin</a>
+    </div>
+    <nav class="footer-nav">
+      <a href="mentions-legales.html">Mentions légales &amp; confidentialité</a>
+      <a href="adhesion.html">Soutenir OMEII</a>
+      <a href="contact.html">Boîte aux lettres</a>
+      <a href="chat.html">Assistant / FAQ</a>
+      <a href="mailto:cetrti.academia@outlook.fr">cetrti.academia@outlook.fr</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="chat-launcher" href="chat.html">Assistant OMEII →</a>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/observatoire.js"></script>
+</body>
+</html>

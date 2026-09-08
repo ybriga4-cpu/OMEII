@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adhésion &amp; soutien — OMEII</title>
+<meta name="description" content="Adhérer gratuitement à OMEII ou soutenir le centre par un don. Aucune cotisation n'est demandée aux membres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="index.html">
+      <strong>OMEII — Observatoire de l'Économie et de l'Intégration des Investissements / Observatory of Moroccan Economy and Integrated Investments</strong>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a href="publications.html">Publications</a>
+      <a href="observatoire.html">Observatoire</a>
+      <a href="recherche.html">Recherche</a>
+      <a href="equipe.html">Équipe</a>
+      <a href="adhesion.html" aria-current="page">Adhésion</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-right">
+      <a class="site-logo" href="index.html">
+        <img src="assets/img/omeii-logo.png" alt="OMEII — Observatoire de l'Économie et de l'Intégration des Investissements / Observatory of Moroccan Economy and Integrated Investments">
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap"><a class="back-home" href="index.html">&larr; Retour à l'accueil</a></div>
+  <section style="padding-bottom:0">
+    <div class="wrap">
+      <p class="eyebrow">Adhésion &amp; soutien</p>
+      <h1>Rejoindre OMEII</h1>
+      <p class="lede">L'adhésion à OMEII est gratuite pour toutes les catégories de membres, conformément à l'article 5 de nos statuts. Le fonctionnement du centre repose exclusivement sur les dons, subventions et parrainages.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px" class="adhesion-grid">
+
+        <div>
+          <h2>Devenir membre — gratuit</h2>
+          <p class="lede" style="margin-bottom:20px">Votre demande est examinée par le Bureau Dirigeant. Vous recevrez un accusé de réception, puis une confirmation en cas d'admission (article 6 des statuts).</p>
+
+          <form class="form-card" name="adhesion" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-adhesion">
+            <input type="hidden" name="form-name" value="adhesion">
+            <p style="display:none">
+              <label>Ne pas remplir : <input name="bot-field"></label>
+            </p>
+
+            <div class="field">
+              <label for="nom">Nom complet</label>
+              <input type="text" id="nom" name="nom" required>
+            </div>
+            <div class="field">
+              <label for="email">Adresse e-mail</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="field">
+              <label for="categorie">Catégorie souhaitée</label>
+              <select id="categorie" name="categorie">
+                <option value="actif">Membre actif / chercheur</option>
+                <option value="honneur">Membre d'honneur / Conseil Scientifique</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="axe">Axe de recherche d'intérêt</label>
+              <select id="axe" name="axe">
+                <option value="economie">Économie</option>
+                <option value="commerce">Commerce international</option>
+                <option value="investissement">Investissement</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">Motivation (facultatif)</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Envoyer ma demande d'adhésion</button>
+            <p class="form-note">Aucune cotisation, initiale ou périodique, ne vous sera jamais demandée.</p>
+          </form>
+        </div>
+
+        <div>
+          <h2>Soutenir par un don</h2>
+          <p class="lede" style="margin-bottom:20px">OMEII ne perçoit aucune cotisation de ses membres : les dons, subventions et parrainages sont la seule ressource qui permet de financer les publications, colloques et l'Observatoire.</p>
+
+          <form class="form-card" name="don" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-don">
+            <input type="hidden" name="form-name" value="don">
+            <p style="display:none">
+              <label>Ne pas remplir : <input name="bot-field"></label>
+            </p>
+
+            <div class="field">
+              <label for="don-nom">Nom complet ou organisme</label>
+              <input type="text" id="don-nom" name="nom" required>
+            </div>
+            <div class="field">
+              <label for="don-email">Adresse e-mail</label>
+              <input type="email" id="don-email" name="email" required>
+            </div>
+            <div class="field">
+              <label for="don-type">Type de soutien</label>
+              <select id="don-type" name="type">
+                <option value="don-ponctuel">Don ponctuel</option>
+                <option value="subvention">Subvention institutionnelle</option>
+                <option value="parrainage">Parrainage d'une publication ou d'un colloque</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="don-message">Précisions (facultatif)</label>
+              <textarea id="don-message" name="message"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Être recontacté·e pour un don</button>
+            <p class="form-note">Les modalités pratiques (virement, autres moyens) vous seront transmises directement par le Trésorier.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt">
+    <div class="wrap">
+      <div class="note-box">
+        <strong>Note de terrain :</strong> ce formulaire est prévu pour fonctionner sans backend, via la détection automatique des formulaires par l'hébergeur (Netlify). Aucune donnée n'est traitée par un service tiers non déclaré, conformément à la loi 09-08.
+      </div>
+    </div>
+  </section>
+
+  <style>@media (max-width:820px){ .adhesion-grid{grid-template-columns:1fr !important} }</style>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-brand">OMEII</p>
+      <p class="footer-meta">Association à but non lucratif régie par le Dahir n° 1-58-376 portant réglementation du droit d'association.</p>
+      <a href="admin.html" class="footer-admin-link">Admin</a>
+    </div>
+    <nav class="footer-nav">
+      <a href="mentions-legales.html">Mentions légales &amp; confidentialité</a>
+      <a href="adhesion.html">Soutenir OMEII</a>
+      <a href="contact.html">Boîte aux lettres</a>
+      <a href="chat.html">Assistant / FAQ</a>
+      <a href="mailto:cetrti.academia@outlook.fr">cetrti.academia@outlook.fr</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="chat-launcher" href="chat.html">Assistant OMEII →</a>
+
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

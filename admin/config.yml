@@ -1,0 +1,88 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# L'espace de gestion écrit directement dans les fichiers JSON du site.
+# Chaque modification créera un commit sur la branche "main" ;
+# Netlify redéploie automatiquement le site à chaque commit.
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+locale: "fr"
+
+collections:
+  - name: "contenu"
+    label: "Contenu du site"
+    files:
+
+      - name: "publications"
+        label: "Publications (études & notes)"
+        file: "assets/data/publications.json"
+        fields:
+          - label: "Publications"
+            name: "items"
+            widget: "list"
+            summary: "{{title}} — {{axisLabel}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - label: "Axe"
+                name: "axis"
+                widget: "select"
+                options:
+                  - { label: "Économie", value: "economie" }
+                  - { label: "Commerce international", value: "commerce" }
+                  - { label: "Investissement", value: "investissement" }
+              - { label: "Axe (libellé affiché)", name: "axisLabel", widget: "string" }
+              - { label: "Date (AAAA-MM)", name: "date", widget: "string", hint: "Exemple : 2026-08" }
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options: ["Étude", "Note d'analyse", "Rapport"]
+              - { label: "Résumé", name: "excerpt", widget: "text" }
+              - { label: "Fichier PDF", name: "file", widget: "file", required: false }
+
+      - name: "axes"
+        label: "Axes de recherche"
+        file: "assets/data/axes.json"
+        fields:
+          - label: "Axes"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Identifiant (sans espace)", name: "id", widget: "string" }
+              - { label: "Numéro affiché", name: "stamp", widget: "string" }
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Résumé", name: "summary", widget: "text" }
+              - { label: "Référent", name: "expert", widget: "string" }
+
+      - name: "annonces"
+        label: "Annonces"
+        file: "assets/data/announcements.json"
+        fields:
+          - label: "Annonces"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Date (AAAA-MM)", name: "date", widget: "string" }
+              - { label: "Texte", name: "body", widget: "text" }
+
+      - name: "videos"
+        label: "Vidéos"
+        file: "assets/data/videos.json"
+        fields:
+          - label: "Vidéos"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Date (AAAA-MM)", name: "date", widget: "string" }
+              - label: "Lien d'intégration (embed)"
+                name: "url"
+                widget: "string"
+                hint: "Sur YouTube : bouton Partager > Intégrer, copier uniquement l'URL src=\"...\""
+              - { label: "Description", name: "description", widget: "text", required: false }

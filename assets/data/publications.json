@@ -1,0 +1,40 @@
+{
+  "items": [
+    {
+      "title": "Douanes et compétitivité : ce que change la réforme tarifaire 2026",
+      "axis": "commerce",
+      "axisLabel": "Commerce international",
+      "date": "2026-03",
+      "type": "Note d'analyse",
+      "excerpt": "Une lecture des ajustements du code des douanes et de leur effet attendu sur les flux d'import-export marocains.",
+      "file": "#"
+    },
+    {
+      "title": "Financement de projets à l'ère de la Charte de l'investissement 2023",
+      "axis": "investissement",
+      "axisLabel": "Investissement",
+      "date": "2026-01",
+      "type": "Étude",
+      "excerpt": "Panorama des primes cumulables et de leur impact réel sur la structure de financement des projets structurants.",
+      "file": "#"
+    },
+    {
+      "title": "Fiscalité des entreprises : la portée réelle du nouveau barème IS",
+      "axis": "economie",
+      "axisLabel": "Économie",
+      "date": "2025-11",
+      "type": "Note d'analyse",
+      "excerpt": "Simulation de l'impact du passage à un IS proportionnel sur trois profils d'entreprises marocaines.",
+      "file": "#"
+    },
+    {
+      "title": "Zones franches logistiques : bilan et perspectives",
+      "axis": "commerce",
+      "axisLabel": "Commerce international",
+      "date": "2025-09",
+      "type": "Étude",
+      "excerpt": "Évaluation de l'attractivité des zones franches marocaines pour les investisseurs régionaux.",
+      "file": "#"
+    }
+  ]
+}

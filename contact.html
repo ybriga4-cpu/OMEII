@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — OMEII</title>
+<meta name="description" content="Contacter OMEII : adhésion, dons, presse ou demande générale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="wordmark" href="index.html">
+      <strong>OMEII — Observatoire de l'Économie et de l'Intégration des Investissements / Observatory of Moroccan Economy and Integrated Investments</strong>
+    </a>
+    <nav class="main-nav" aria-label="Navigation principale">
+      <a href="publications.html">Publications</a>
+      <a href="observatoire.html">Observatoire</a>
+      <a href="recherche.html">Recherche</a>
+      <a href="equipe.html">Équipe</a>
+      <a href="adhesion.html">Adhésion</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+    </nav>
+    <div class="header-right">
+      <a class="site-logo" href="index.html">
+        <img src="assets/img/omeii-logo.png" alt="OMEII — Observatoire de l'Économie et de l'Intégration des Investissements / Observatory of Moroccan Economy and Integrated Investments">
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap"><a class="back-home" href="index.html">&larr; Retour à l'accueil</a></div>
+  <section style="padding-bottom:0">
+    <div class="wrap">
+      <p class="eyebrow">Contact</p>
+      <h1>Boîte aux lettres OMEII</h1>
+      <p class="lede">Choisissez le sujet de votre message ci-dessous, ou écrivez-nous directement via le formulaire. Vous pouvez aussi essayer notre <a href="chat.html">assistant FAQ</a> pour une réponse immédiate aux questions courantes.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="mailbox">
+        <div class="mailbox-tabs">
+          <h3>Boîtes par sujet</h3>
+          <div class="mailbox-entry">
+            <div class="mailbox-icon">A</div>
+            <div>
+              <h4>Adhésion &amp; Conseil Scientifique</h4>
+              <p>Demandes d'adhésion, candidatures d'experts.</p>
+            </div>
+          </div>
+          <div class="mailbox-entry">
+            <div class="mailbox-icon">D</div>
+            <div>
+              <h4>Dons &amp; partenariats</h4>
+              <p>Soutien financier, subventions, parrainages.</p>
+            </div>
+          </div>
+          <div class="mailbox-entry">
+            <div class="mailbox-icon">P</div>
+            <div>
+              <h4>Presse &amp; publications</h4>
+              <p>Demandes de citation, propositions d'étude.</p>
+            </div>
+          </div>
+          <div class="mailbox-entry">
+            <div class="mailbox-icon">G</div>
+            <div>
+              <h4>Général</h4>
+              <p>Toute autre question — cetrti.academia@outlook.fr</p>
+            </div>
+          </div>
+        </div>
+
+        <form class="form-card" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-contact">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none">
+            <label>Ne pas remplir : <input name="bot-field"></label>
+          </p>
+
+          <div class="field">
+            <label for="c-nom">Nom complet</label>
+            <input type="text" id="c-nom" name="nom" required>
+          </div>
+          <div class="field">
+            <label for="c-email">Adresse e-mail</label>
+            <input type="email" id="c-email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="c-sujet">Sujet</label>
+            <select id="c-sujet" name="sujet">
+              <option value="adhesion">Adhésion &amp; Conseil Scientifique</option>
+              <option value="dons">Dons &amp; partenariats</option>
+              <option value="presse">Presse &amp; publications</option>
+              <option value="general">Général</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="c-message">Message</label>
+            <textarea id="c-message" name="message" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Envoyer le message</button>
+          <p class="form-note">Les messages sont reçus par le Bureau Dirigeant. Réponse sous quelques jours ouvrés.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <p class="footer-brand">OMEII</p>
+      <p class="footer-meta">Association à but non lucratif régie par le Dahir n° 1-58-376 portant réglementation du droit d'association.</p>
+      <a href="admin.html" class="footer-admin-link">Admin</a>
+    </div>
+    <nav class="footer-nav">
+      <a href="mentions-legales.html">Mentions légales &amp; confidentialité</a>
+      <a href="adhesion.html">Soutenir OMEII</a>
+      <a href="contact.html">Boîte aux lettres</a>
+      <a href="chat.html">Assistant / FAQ</a>
+      <a href="mailto:cetrti.academia@outlook.fr">cetrti.academia@outlook.fr</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="chat-launcher" href="chat.html">Assistant OMEII →</a>
+
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
