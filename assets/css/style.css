@@ -208,7 +208,7 @@ canvas{max-width:100%}
 .footer-nav a{text-decoration:none;color:var(--paper-alt);opacity:.85}
 .footer-nav a:hover{opacity:1;text-decoration:underline}
 .footer-admin-link{
-  display:inline-block;margin-top:14px;font-size:.78rem;
+  display:inline-block;margin-top:40px;font-size:.78rem;
   color:var(--navy-deep);text-decoration:none;
 }
 .footer-admin-link:hover{color:var(--navy-deep)}
