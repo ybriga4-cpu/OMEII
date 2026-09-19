@@ -1,40 +1,31 @@
 {
   "items": [
     {
-      "title": "Douanes et compétitivité : ce que change la réforme tarifaire 2026",
-      "axis": "commerce",
-      "axisLabel": "Commerce international",
-      "date": "2026-03",
-      "type": "Note d'analyse",
-      "excerpt": "Une lecture des ajustements du code des douanes et de leur effet attendu sur les flux d'import-export marocains.",
-      "file": "#"
-    },
-    {
-      "title": "Financement de projets à l'ère de la Charte de l'investissement 2023",
-      "axis": "investissement",
-      "axisLabel": "Investissement",
-      "date": "2026-01",
-      "type": "Étude",
-      "excerpt": "Panorama des primes cumulables et de leur impact réel sur la structure de financement des projets structurants.",
-      "file": "#"
-    },
-    {
-      "title": "Fiscalité des entreprises : la portée réelle du nouveau barème IS",
+      "title": "Croissance 2026 : le HCP table sur une reprise portée par l'agriculture",
       "axis": "economie",
       "axisLabel": "Économie",
-      "date": "2025-11",
-      "type": "Note d'analyse",
-      "excerpt": "Simulation de l'impact du passage à un IS proportionnel sur trois profils d'entreprises marocaines.",
-      "file": "#"
+      "date": "2026-04",
+      "type": "Veille",
+      "excerpt": "Le Haut-Commissariat au Plan prévoit une croissance de 5% au premier trimestre 2026, tirée par un rebond agricole de 14,8% après des pluies exceptionnelles, dans un contexte de légère déflation (-0,1%) liée à la baisse des prix alimentaires.",
+      "file": "https://lematin.ma/economie/croissance-inflation-les-principales-perspectives-du-hcp-pour-2026/340594"
     },
     {
-      "title": "Zones franches logistiques : bilan et perspectives",
+      "title": "Feuille de route commerce extérieur 2025-2027 : 76 000 emplois visés",
       "axis": "commerce",
       "axisLabel": "Commerce international",
-      "date": "2025-09",
-      "type": "Étude",
-      "excerpt": "Évaluation de l'attractivité des zones franches marocaines pour les investisseurs régionaux.",
-      "file": "#"
+      "date": "2025-06",
+      "type": "Veille",
+      "excerpt": "Le gouvernement a lancé une feuille de route pour le commerce extérieur visant la création de 76 000 emplois, 400 nouvelles entreprises exportatrices par an et 84 milliards de dirhams de revenus d'export additionnels, alors que le Parlement évalue en parallèle l'impact des accords de libre-échange existants.",
+      "file": "https://aujourdhui.ma/actualite/libre-echange-le-parlement-evalue-limpact-des-accords"
+    },
+    {
+      "title": "Investissement : 581 milliards de DH validés depuis 2021",
+      "axis": "investissement",
+      "axisLabel": "Investissement",
+      "date": "2026-05",
+      "type": "Veille",
+      "excerpt": "La Commission des investissements a approuvé 381 projets représentant près de 581 milliards de dirhams depuis 2021, dont 513 milliards depuis la Charte de l'investissement de mars 2023 (297 projets, 201 000 emplois attendus), avec un taux de lancement de 98% des initiatives prévues.",
+      "file": "https://www.lenouvelliste.ma/la-commission-des-investissements-a-valide-581-milliards-de-dh-de-projets/"
     }
   ]
 }
