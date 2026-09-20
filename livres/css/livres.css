@@ -534,3 +534,17 @@
   flex:1;
 }
 .pub-book-card .bp-btn{ align-self:center; padding:9px 18px; font-size:.82rem; }
+
+.pub-book-card-soon img{ opacity:.55; filter:grayscale(35%); }
+.pub-book-card-soon .pub-book-title{ color:var(--muted, #6b7280); }
+.pub-btn-disabled{
+  align-self:center;
+  padding:9px 18px;
+  font-size:.82rem;
+  border:1px dashed var(--line);
+  color:var(--muted, #6b7280);
+  background:transparent;
+  cursor:default;
+  pointer-events:none;
+}
+.pub-btn-disabled:hover{ background:transparent; color:var(--muted, #6b7280); }
