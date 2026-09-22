@@ -150,7 +150,8 @@ section{padding:64px 0}
 
 /* ===== Team ===== */
 .person{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
-.person-avatar{width:64px;height:64px;border-radius:50%;background:var(--sky-tint);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--navy);font-size:1.2rem}
+.person-avatar{width:64px;height:64px;border-radius:50%;background:var(--sky-tint);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--navy);font-size:1.2rem;overflow:hidden}
+.person-avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .person h3{margin-bottom:2px}
 .person-role{font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);margin-bottom:8px;display:block}
 .person p{font-size:.92rem;color:var(--ink-soft);margin:0}
