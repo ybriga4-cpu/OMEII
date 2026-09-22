@@ -86,3 +86,21 @@ collections:
                 widget: "string"
                 hint: "Sur YouTube : bouton Partager > Intégrer, copier uniquement l'URL src=\"...\""
               - { label: "Description", name: "description", widget: "text", required: false }
+
+      - name: "audiobooks"
+        label: "Audiobooks"
+        file: "assets/data/audiobooks.json"
+        fields:
+          - label: "Audiobooks"
+            name: "items"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Titre", name: "title", widget: "string" }
+              - { label: "Date (AAAA-MM)", name: "date", widget: "string" }
+              - { label: "Couverture", name: "cover", widget: "image", required: false }
+              - label: "Lien"
+                name: "url"
+                widget: "string"
+                hint: "Page du livre audio (ex : livres/customs-wars-audiobook.html) ou fichier audio direct"
+              - { label: "Description", name: "description", widget: "text", required: false }

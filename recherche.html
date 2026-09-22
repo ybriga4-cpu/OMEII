@@ -31,6 +31,7 @@
         <button type="button" class="tab-btn is-active" data-tab="tab-etudes">Études &amp; notes</button>
         <button type="button" class="tab-btn" data-tab="tab-annonces">Annonces</button>
         <button type="button" class="tab-btn" data-tab="tab-videos">Vidéos</button>
+        <button type="button" class="tab-btn" data-tab="tab-audiobooks">Audiobooks</button>
       </div>
 
       <div id="tab-etudes" class="tab-panel is-active">
@@ -49,6 +50,11 @@
 
       <div id="tab-videos" class="tab-panel">
         <div class="video-grid" data-video-list></div>
+      </div>
+
+      <div id="tab-audiobooks" class="tab-panel">
+        <p class="lede" style="margin-bottom:24px">Versions audio des publications et ouvrages d'OMEII, à écouter librement.</p>
+        <div class="audio-grid" data-audiobook-list></div>
       </div>
     </div>
   </section>
@@ -81,6 +87,7 @@
   renderPublications('[data-pub-list]', { filterGroup: '[data-filter-group]' });
   renderAnnouncements('[data-announce-list]');
   renderVideos('[data-video-list]');
+  renderAudiobooks('[data-audiobook-list]');
   initTabs('[data-tabs]');
 </script>
 </body>

@@ -67,6 +67,21 @@ function videoMarkup(item) {
     </div>`;
 }
 
+function audiobookMarkup(item) {
+  const cover = item.cover
+    ? `<a class="audio-cover" href="${item.url}"><img src="${item.cover}" alt="Couverture — ${item.title}" loading="lazy"></a>`
+    : "";
+  return `
+    <article class="audio-card">
+      ${cover}
+      <div class="audio-body">
+        <h3>${item.title}</h3>
+        <p>${item.description || ""}</p>
+        <a class="btn btn-primary" href="${item.url}">Écouter →</a>
+      </div>
+    </article>`;
+}
+
 async function renderAxes(selector, limit) {
   const el = document.querySelector(selector);
   if (!el) return;
@@ -137,6 +152,20 @@ async function renderVideos(selector) {
       : `<p class="empty-state">Aucune vidéo pour le moment.</p>`;
   } catch (e) {
     el.innerHTML = `<p class="empty-state">Vidéos indisponibles pour le moment.</p>`;
+  }
+}
+
+async function renderAudiobooks(selector) {
+  const el = document.querySelector(selector);
+  if (!el) return;
+  try {
+    const items = await loadItems("assets/data/audiobooks.json");
+    items.sort((a, b) => (a.date < b.date ? 1 : -1));
+    el.innerHTML = items.length
+      ? items.map(audiobookMarkup).join("")
+      : `<p class="empty-state">Aucun audiobook pour le moment.</p>`;
+  } catch (e) {
+    el.innerHTML = `<p class="empty-state">Audiobooks indisponibles pour le moment.</p>`;
   }
 }
 

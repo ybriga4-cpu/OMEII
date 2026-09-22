@@ -148,6 +148,23 @@ section{padding:64px 0}
 .video-body h3{font-size:1rem;margin-bottom:4px}
 .video-body p{font-size:.86rem;color:var(--ink-soft);margin:0}
 
+/* Audiobooks */
+.audio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.audio-card{background:var(--sky-tint-2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.audio-cover{display:block}
+.audio-cover img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block}
+.audio-body{padding:16px 18px}
+.audio-body h3{font-size:1rem;margin-bottom:4px}
+.audio-body p{font-size:.86rem;color:var(--ink-soft);margin:0 0 14px}
+.audio-player{width:100%}
+
+/* Audiobook player page */
+.audiobook-parts{display:grid;gap:16px}
+.audiobook-part{background:var(--sky-tint-2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+.audiobook-part-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.audiobook-part-num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.9rem;flex-shrink:0}
+.audiobook-part-head h3{margin:0;font-size:1.05rem}
+
 /* ===== Team ===== */
 .person{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
 .person-avatar{width:64px;height:64px;border-radius:50%;background:var(--sky-tint);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);color:var(--navy);font-size:1.2rem;overflow:hidden}
