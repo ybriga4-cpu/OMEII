@@ -104,10 +104,17 @@
   var form = document.getElementById('form-contact');
   var status = document.getElementById('form-status');
   if (!form) return;
+  var subjectField = form.querySelector('input[name="_subject"]');
   form.addEventListener('submit', function (ev) {
     ev.preventDefault();
     var btn = form.querySelector('button[type="submit"]');
     var originalStatus = status.textContent;
+    if (subjectField) {
+      var nomVal = (form.querySelector('#c-nom') || {}).value || 'Site OMEII';
+      var sujetSelect = form.querySelector('#c-sujet');
+      var sujetLabel = sujetSelect ? sujetSelect.options[sujetSelect.selectedIndex].text : '';
+      subjectField.value = 'Contact OMEII — ' + sujetLabel + ' — ' + nomVal;
+    }
     btn.disabled = true;
     btn.textContent = 'Envoi en cours…';
     fetch(form.action, {
