@@ -25,6 +25,9 @@ function initIntro() {
 
   media.addEventListener("error", hide);
   skipBtn.addEventListener("click", hide);
+  // Cliquer n'importe où sur l'intro la passe aussi (pas seulement le bouton dédié),
+  // pour qu'un clic impatient sur un lien du menu ne soit jamais "avalé" en silence.
+  overlay.addEventListener("click", hide);
 
   // Un GIF n'émet pas d'événement "ended" : on masque l'intro après un délai fixe.
   setTimeout(hide, 3000);

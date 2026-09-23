@@ -60,10 +60,10 @@
           </div>
         </div>
 
-        <form class="form-card" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form-contact">
-          <input type="hidden" name="form-name" value="contact">
-          <p style="display:none">
-            <label>Ne pas remplir : <input name="bot-field"></label>
+        <form class="form-card" method="POST" action="https://formspree.io/f/mjykrlyr" id="form-contact">
+          <input type="hidden" name="_subject" value="Nouveau message — Contact OMEII">
+          <p style="display:none" aria-hidden="true">
+            <label>Ne pas remplir : <input name="_gotcha" tabindex="-1" autocomplete="off"></label>
           </p>
 
           <div class="field">
@@ -88,7 +88,7 @@
             <textarea id="c-message" name="message" required></textarea>
           </div>
           <button class="btn btn-primary" type="submit">Envoyer le message</button>
-          <p class="form-note">Les messages sont reçus par le Bureau Dirigeant. Réponse sous quelques jours ouvrés.</p>
+          <p class="form-note" id="form-status">Les messages sont reçus par le Bureau Dirigeant. Réponse sous quelques jours ouvrés.</p>
         </form>
       </div>
     </div>
@@ -99,6 +99,39 @@
 
 <script src="assets/js/site-chrome.js"></script>
 <script src="assets/js/main.js"></script>
+<script>
+(function () {
+  var form = document.getElementById('form-contact');
+  var status = document.getElementById('form-status');
+  if (!form) return;
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var originalStatus = status.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours…';
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (response) {
+      if (response.ok) {
+        form.reset();
+        status.textContent = 'Merci, votre message a bien été envoyé. Nous vous répondrons sous quelques jours ouvrés.';
+        btn.textContent = 'Message envoyé';
+      } else {
+        status.textContent = "Une erreur s'est produite. Merci de réessayer, ou d'écrire directement à contact@omeii.ma.";
+        btn.disabled = false;
+        btn.textContent = 'Envoyer le message';
+      }
+    }).catch(function () {
+      status.textContent = "Une erreur s'est produite. Merci de réessayer, ou d'écrire directement à contact@omeii.ma.";
+      btn.disabled = false;
+      btn.textContent = 'Envoyer le message';
+    });
+  });
+})();
+</script>
 
 </body>
 </html>
