@@ -32,8 +32,7 @@
     { href: "mentions-legales.html",  label: "Mentions légales & confidentialité" },
     { href: "adhesion.html",          label: "Soutenir OMEII" },
     { href: "contact.html",           label: "Boîte aux lettres" },
-    { href: "chat.html",              label: "Assistant / FAQ" },
-    { href: "mailto:contact@omeii.ma", label: "contact@omeii.ma" }
+    { href: "chat.html",              label: "Assistant / FAQ" }
   ];
 
   function currentPage() {
