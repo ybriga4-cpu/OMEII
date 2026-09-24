@@ -1,10 +1,10 @@
 {
   "items": [
     {
-      "title": "Présentation d'OMEII en deux minutes",
-      "date": "2026-08",
-      "url": "https://www.youtube.com/embed/VOTRE_ID_VIDEO",
-      "description": "Vidéo de présentation à remplacer par votre propre contenu depuis le backoffice."
+      "title": "OMEII — Vidéo institutionnelle",
+      "date": "2026-09",
+      "url": "assets/video/omeii-video-institutionnelle.mp4",
+      "description": "Vidéo de présentation de l'OMEII."
     }
   ]
 }

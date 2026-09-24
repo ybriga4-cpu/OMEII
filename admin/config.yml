@@ -81,10 +81,10 @@ collections:
             fields:
               - { label: "Titre", name: "title", widget: "string" }
               - { label: "Date (AAAA-MM)", name: "date", widget: "string" }
-              - label: "Lien d'intégration (embed)"
+              - label: "Vidéo"
                 name: "url"
                 widget: "string"
-                hint: "Sur YouTube : bouton Partager > Intégrer, copier uniquement l'URL src=\"...\""
+                hint: "Soit un lien d'intégration YouTube (bouton Partager > Intégrer, copier uniquement l'URL src=\"...\"), soit un fichier vidéo (.mp4/.webm/.mov) uploadé dans assets/video/"
               - { label: "Description", name: "description", widget: "text", required: false }
 
       - name: "audiobooks"
