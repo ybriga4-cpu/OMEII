@@ -548,3 +548,16 @@
   pointer-events:none;
 }
 .pub-btn-disabled:hover{ background:transparent; color:var(--muted, #6b7280); }
+
+/* ---------- Lien de téléchargement PDF (cartes bibliothèque) ---------- */
+.lib-card-dl{
+  align-self:flex-start;
+  margin-top:4px;
+  font-size:.82rem;
+  font-weight:600;
+  color:#C9A24A;
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+}
+.lib-card-dl:hover,.lib-card-dl:focus{border-bottom-color:currentColor}
+.bp-btn small{font-weight:400;opacity:.8}
