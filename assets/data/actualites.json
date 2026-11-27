@@ -1,0 +1,95 @@
+{
+  "items": [
+    {
+      "id": "exemple-inflation-lecture",
+      "status": "publie",
+      "example": true,
+      "cat": "economie",
+      "author": "OMEII",
+      "date": "2026-11-27",
+      "title": "Exemple — Lire un indicateur d'inflation sans se tromper",
+      "title_ar": "مثال — كيف نقرأ مؤشر التضخم دون الوقوع في الخطأ",
+      "excerpt": "Article d'exemple : glissement annuel, variation mensuelle et effet de base ne disent pas la même chose. Ce texte sera remplacé par une analyse OMEII.",
+      "excerpt_ar": "مقال تجريبي: الانزلاق السنوي والتغير الشهري وأثر القاعدة لا تعني الشيء نفسه. سيُستبدل هذا النص بتحليل من OMEII.",
+      "body": [
+        "Ceci est un article d'exemple, destiné à vérifier la mise en page de la rubrique Actualités. Il ne contient aucune donnée chiffrée.",
+        "Un indicateur de prix peut s'exprimer en glissement annuel, en variation mensuelle ou en moyenne sur la période. Comparer des chiffres exprimés différemment conduit à de fausses conclusions.",
+        "Remplacez cet article depuis le fichier assets/data/actualites.json."
+      ],
+      "body_ar": [
+        "هذا مقال تجريبي الغرض منه التحقق من تصميم ركن الأخبار، ولا يتضمن أي معطيات رقمية.",
+        "يمكن التعبير عن مؤشر الأسعار بالانزلاق السنوي أو بالتغير الشهري أو بالمتوسط خلال الفترة. ومقارنة أرقام معبَّر عنها بطرق مختلفة تؤدي إلى استنتاجات خاطئة."
+      ],
+      "sources": [],
+      "ai": false
+    },
+    {
+      "id": "exemple-incoterms-bases",
+      "status": "publie",
+      "example": true,
+      "cat": "commerce",
+      "author": "OMEII",
+      "date": "2026-11-26",
+      "title": "Exemple — Incoterms : ce que le prix ne dit pas",
+      "title_ar": "مثال — الإنكوتيرمز: ما لا يقوله السعر",
+      "excerpt": "Article d'exemple sur la répartition des frais et des risques entre vendeur et acheteur. À remplacer.",
+      "excerpt_ar": "مقال تجريبي حول توزيع التكاليف والمخاطر بين البائع والمشتري. سيتم استبداله.",
+      "body": [
+        "Article d'exemple. Le choix de l'incoterm détermine qui paie le transport, l'assurance et les formalités, et à quel moment le risque est transféré.",
+        "Cette rubrique accueillera des notes courtes sur le commerce international et la douane."
+      ],
+      "sources": [],
+      "ai": false
+    },
+    {
+      "id": "exemple-investissement-faisabilite",
+      "status": "publie",
+      "example": true,
+      "cat": "investissement",
+      "author": "OMEII",
+      "date": "2026-11-25",
+      "title": "Exemple — Les trois questions d'une étude de faisabilité",
+      "title_ar": "مثال — الأسئلة الثلاثة لدراسة الجدوى",
+      "excerpt": "Article d'exemple : marché, technique, financier. À remplacer par un contenu rédigé par OMEII.",
+      "excerpt_ar": "مقال تجريبي: السوق والجانب التقني والجانب المالي. سيُستبدل بمحتوى من إعداد OMEII.",
+      "body": [
+        "Article d'exemple. Une étude de faisabilité répond à trois questions : le marché existe-t-il, le projet est-il réalisable techniquement, et sa rentabilité est-elle suffisante ?"
+      ],
+      "sources": [],
+      "ai": false
+    },
+    {
+      "id": "exemple-breve-hcp",
+      "status": "publie",
+      "example": true,
+      "cat": "officiel",
+      "type": "breve",
+      "author": "Source : HCP",
+      "date": "2026-11-24",
+      "title": "Exemple de brève — publication du Haut-Commissariat au Plan",
+      "title_ar": "مثال لموجز — منشور المندوبية السامية للتخطيط",
+      "excerpt": "Ici s'affichera un résumé court, rédigé par OMEII, avec un lien vers la publication officielle. Le contenu de la source n'est jamais recopié.",
+      "excerpt_ar": "سيظهر هنا ملخص قصير من إعداد OMEII مع رابط نحو المنشور الرسمي. لا يتم نسخ محتوى المصدر أبدا.",
+      "sourceUrl": "https://www.hcp.ma",
+      "sources": [],
+      "ai": false
+    },
+    {
+      "id": "exemple-annonce-rubrique",
+      "status": "publie",
+      "example": true,
+      "cat": "annonces",
+      "author": "OMEII",
+      "date": "2026-11-23",
+      "title": "Exemple — Ouverture de la rubrique Actualités",
+      "title_ar": "مثال — افتتاح ركن الأخبار",
+      "excerpt": "Annonce d'exemple. Les annonces officielles de l'association seront publiées ici.",
+      "excerpt_ar": "إعلان تجريبي. ستنشر هنا الإعلانات الرسمية للجمعية.",
+      "body": [
+        "Annonce d'exemple, à remplacer par une annonce réelle de l'association."
+      ],
+      "sources": [],
+      "ai": false
+    }
+  ]
+}
