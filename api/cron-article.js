@@ -11,6 +11,7 @@
  *   GITHUB_TOKEN       jeton avec accès « Contents: read/write » au dépôt
  *   ARTICLE_AUTO       "on" pour activer (sinon la fonction ne fait rien)
  *   ARTICLE_MODE       "brouillon" (défaut) ou "publie"
+ *   ARTICLES_PER_DAY   nombre d'articles par passage (défaut 2, maximum 3)
  *   GITHUB_REPO        optionnel, défaut "ybriga4-cpu/OMEII"
  *   GITHUB_BRANCH      optionnel, défaut "main"
  *   ANTHROPIC_MODEL    optionnel, défaut "claude-haiku-5-5"
@@ -30,6 +31,8 @@ const SYSTEM = `Tu rédiges pour OMEII, observatoire marocain de l'économie et 
 Règles strictes :
 - Écris en français, ton pédagogique et neutre, aucun avis politique, aucun conseil d'investissement personnalisé.
 - N'invente AUCUN chiffre, date, nom, loi, article de loi ou citation. Si tu n'es pas certain, reste général.
+- N'utilise aucun chiffre (écris les nombres en lettres si nécessaire), aucune année, aucun pourcentage, aucun montant.
+- Ne parle pas de l'actualité récente : écris un contenu pédagogique intemporel.
 - N'écris aucune référence ni URL : la liste de sources sera ajoutée par un relecteur humain.
 - Longueur : 3 à 5 paragraphes courts.
 Réponds UNIQUEMENT par un objet JSON, sans texte autour ni balises :
@@ -58,6 +61,35 @@ async function ghPut(repo, branch, path, json, sha, message, token) {
   if (!r.ok) throw new Error(`GitHub PUT ${path}: ${r.status} ${await r.text()}`);
 }
 
+async function generate(theme, recentTitles) {
+  const ar = await fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: { "x-api-key": process.env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    body: JSON.stringify({
+      model: process.env.ANTHROPIC_MODEL || "claude-haiku-5-5",
+      max_tokens: 1500,
+      system: SYSTEM,
+      messages: [{ role: "user", content:
+        `Rédige un article sur : ${theme.sujet}.\n` +
+        (recentTitles.length ? `Évite ces sujets déjà traités :\n- ${recentTitles.join("\n- ")}` : "") }]
+    })
+  });
+  if (!ar.ok) throw new Error(`Anthropic: ${ar.status} ${await ar.text()}`);
+  const data = await ar.json();
+  const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("").replace(/```json|```/g, "").trim();
+  try { return JSON.parse(text); } catch (e) { return null; }
+}
+
+// Garde-fous : on ne publie jamais un texte qui contient des chiffres, des liens ou qui est incomplet.
+function validate(a) {
+  if (!a || !a.title || !a.excerpt || !Array.isArray(a.body) || a.body.length < 3) return "incomplet";
+  const all = [a.title, a.excerpt, ...a.body].join(" ");
+  if (/\d/.test(all)) return "contient des chiffres";
+  if (/https?:|www\./i.test(all)) return "contient un lien";
+  if (all.length < 600) return "trop court";
+  return null;
+}
+
 module.exports = async (req, res) => {
   const log = (o) => console.log(JSON.stringify({ fn: "cron-article", ...o }));
 
@@ -81,58 +113,56 @@ module.exports = async (req, res) => {
   const token = process.env.GITHUB_TOKEN;
   const mode = process.env.ARTICLE_MODE === "publie" ? "publie" : "brouillon";
   const today = new Date().toISOString().slice(0, 10);
-  const id = `auto-${today}`;
   const targetPath = mode === "publie" ? "assets/data/actualites.json" : "assets/data/brouillons.json";
 
   try {
-    // Un seul article par jour : on vérifie les deux fichiers.
     const [pub, dra] = await Promise.all([
       ghGet(repo, branch, "assets/data/actualites.json", token),
       ghGet(repo, branch, "assets/data/brouillons.json", token)
     ]);
-    const exists = [...(pub.json.items || []), ...(dra.json.items || [])].some((i) => i.id === id);
-    if (exists) {
-      log({ skipped: "déjà généré", id });
-      return res.status(200).json({ skipped: true, id });
-    }
-
-    const theme = THEMES[new Date().getUTCDate() % THEMES.length];
-    const ar = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: { "x-api-key": process.env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-      body: JSON.stringify({
-        model: process.env.ANTHROPIC_MODEL || "claude-haiku-5-5",
-        max_tokens: 1500,
-        system: SYSTEM,
-        messages: [{ role: "user", content: `Rédige l'article du jour sur : ${theme.sujet}.` }]
-      })
-    });
-    if (!ar.ok) throw new Error(`Anthropic: ${ar.status} ${await ar.text()}`);
-    const data = await ar.json();
-    const text = (data.content || []).filter((b) => b.type === "text").map((b) => b.text).join("").replace(/```json|```/g, "").trim();
-    const art = JSON.parse(text);
-    if (!art.title || !art.excerpt || !Array.isArray(art.body) || !art.body.length) throw new Error("Réponse du modèle incomplète");
-
-    const item = {
-      id,
-      status: mode === "publie" ? "publie" : "brouillon",
-      cat: theme.cat,
-      author: "OMEII",
-      date: today,
-      title: String(art.title),
-      excerpt: String(art.excerpt),
-      body: art.body.map(String),
-      sources: [],
-      ai: true
-    };
-
+    const known = [...(pub.json.items || []), ...(dra.json.items || [])];
     const target = mode === "publie" ? pub : dra;
     target.json.items = target.json.items || [];
-    target.json.items.unshift(item);
-    await ghPut(repo, branch, targetPath, target.json, target.sha, `Article du jour (${mode}) : ${item.title}`, token);
 
-    log({ ok: true, id, mode, cat: item.cat });
-    return res.status(200).json({ ok: true, id, mode });
+    const perDay = Math.min(Math.max(parseInt(process.env.ARTICLES_PER_DAY || "2", 10) || 2, 1), 3);
+    const created = [];
+
+    for (let n = 1; n <= perDay; n++) {
+      const id = `auto-${today}-${n}`;
+      if (known.some((i) => i.id === id)) { log({ skipped: "déjà généré", id }); continue; }
+
+      const theme = THEMES[(new Date().getUTCDate() * perDay + n) % THEMES.length];
+      const recent = known.slice(0, 20).map((i) => i.title).filter(Boolean);
+      let art = null;
+      for (let attempt = 1; attempt <= 2 && !art; attempt++) {
+        const candidate = await generate(theme, recent);
+        const reason = validate(candidate);
+        if (reason) log({ rejected: id, attempt, reason }); else art = candidate;
+      }
+      if (!art) { log({ error: "article rejeté deux fois", id }); continue; }
+
+      const item = {
+        id,
+        status: mode === "publie" ? "publie" : "brouillon",
+        cat: theme.cat,
+        author: "OMEII",
+        date: today,
+        title: String(art.title).trim(),
+        excerpt: String(art.excerpt).trim(),
+        body: art.body.map((p) => String(p).trim()),
+        sources: [],
+        ai: true
+      };
+      target.json.items.unshift(item);
+      known.unshift(item);
+      created.push(item);
+    }
+
+    if (!created.length) return res.status(200).json({ ok: true, created: 0 });
+
+    await ghPut(repo, branch, targetPath, target.json, target.sha, `Articles du jour (${mode}) : ${created.map((i) => i.title).join(" | ")}`, token);
+    log({ ok: true, mode, created: created.map((i) => ({ id: i.id, cat: i.cat })) });
+    return res.status(200).json({ ok: true, mode, created: created.length });
   } catch (e) {
     log({ error: String(e.message || e) });
     return res.status(500).json({ error: "failed" });

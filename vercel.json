@@ -1,5 +1,8 @@
 {
   "crons": [
     { "path": "/api/cron-article", "schedule": "0 6 * * *" }
-  ]
+  ],
+  "functions": {
+    "api/cron-article.js": { "maxDuration": 60 }
+  }
 }

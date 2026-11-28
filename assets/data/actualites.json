@@ -1,95 +1,114 @@
 {
   "items": [
     {
-      "id": "exemple-inflation-lecture",
+      "id": "inflation-glissement-annuel-variation-mensuelle",
       "status": "publie",
-      "example": true,
       "cat": "economie",
       "author": "OMEII",
-      "date": "2026-11-27",
-      "title": "Exemple — Lire un indicateur d'inflation sans se tromper",
-      "title_ar": "مثال — كيف نقرأ مؤشر التضخم دون الوقوع في الخطأ",
-      "excerpt": "Article d'exemple : glissement annuel, variation mensuelle et effet de base ne disent pas la même chose. Ce texte sera remplacé par une analyse OMEII.",
-      "excerpt_ar": "مقال تجريبي: الانزلاق السنوي والتغير الشهري وأثر القاعدة لا تعني الشيء نفسه. سيُستبدل هذا النص بتحليل من OMEII.",
+      "date": "2026-11-28",
+      "title": "Inflation : ne pas confondre glissement annuel et variation mensuelle",
+      "title_ar": "التضخم: لا تخلطوا بين الانزلاق السنوي والتغير الشهري",
+      "excerpt": "Un même mois peut afficher une hausse mensuelle et une inflation annuelle très différentes. Voici comment lire ces deux chiffres, et pourquoi l'effet de base compte.",
+      "excerpt_ar": "قد يسجل الشهر نفسه ارتفاعا شهريا وتضخما سنويا مختلفين تماما. إليكم كيفية قراءة الرقمين، ولماذا يهم أثر القاعدة.",
       "body": [
-        "Ceci est un article d'exemple, destiné à vérifier la mise en page de la rubrique Actualités. Il ne contient aucune donnée chiffrée.",
-        "Un indicateur de prix peut s'exprimer en glissement annuel, en variation mensuelle ou en moyenne sur la période. Comparer des chiffres exprimés différemment conduit à de fausses conclusions.",
-        "Remplacez cet article depuis le fichier assets/data/actualites.json."
+        "Quand on parle d'inflation, on mélange souvent deux mesures. Le glissement annuel compare l'indice des prix d'un mois à celui du même mois un an plus tôt : c'est le chiffre le plus cité dans la presse. La variation mensuelle compare le mois à celui qui le précède et reflète le mouvement le plus récent.",
+        "Les deux peuvent diverger. Une hausse mensuelle marquée n'implique pas une forte inflation annuelle si les prix avaient fortement baissé un an plus tôt, et inversement. C'est l'effet de base : le chiffre annuel dépend aussi de ce qui s'est passé douze mois auparavant, pas seulement de ce qui s'est passé ce mois-ci.",
+        "Il faut aussi distinguer l'indice d'ensemble de ses composantes. Les prix alimentaires, très volatils, peuvent faire varier l'indice général d'un mois à l'autre, alors que l'inflation sous-jacente, qui écarte les produits aux prix les plus volatils ou administrés, donne une idée plus lisse de la tendance.",
+        "Pour un décideur ou un porteur de projet, la bonne pratique est de lire ensemble ces trois éléments : variation annuelle, variation mensuelle et composantes. Aucun chiffre isolé ne dit tout."
       ],
       "body_ar": [
-        "هذا مقال تجريبي الغرض منه التحقق من تصميم ركن الأخبار، ولا يتضمن أي معطيات رقمية.",
-        "يمكن التعبير عن مؤشر الأسعار بالانزلاق السنوي أو بالتغير الشهري أو بالمتوسط خلال الفترة. ومقارنة أرقام معبَّر عنها بطرق مختلفة تؤدي إلى استنتاجات خاطئة."
+        "عند الحديث عن التضخم يخلط كثيرون بين مقياسين. الانزلاق السنوي يقارن مؤشر الأسعار لشهر ما بمؤشر الشهر نفسه قبل سنة، وهو الرقم الأكثر تداولا في الصحافة. أما التغير الشهري فيقارن الشهر بالشهر الذي سبقه، ويعكس أحدث تحرك في الأسعار.",
+        "قد يختلف الرقمان. فارتفاع شهري كبير لا يعني بالضرورة تضخما سنويا مرتفعا إذا كانت الأسعار قد انخفضت بقوة قبل سنة، والعكس صحيح. هذا هو أثر القاعدة: فالرقم السنوي يتأثر أيضا بما حدث قبل اثني عشر شهرا، وليس بما حدث هذا الشهر فقط.",
+        "ينبغي كذلك التمييز بين المؤشر العام ومكوناته. فأسعار المواد الغذائية شديدة التقلب وقد تحرك المؤشر العام من شهر لآخر، في حين يعطي التضخم الأساسي، الذي يستبعد المنتجات الأكثر تقلبا أو الخاضعة للتسعير الإداري، صورة أكثر استقرارا عن الاتجاه العام.",
+        "وبالنسبة لصانع القرار أو صاحب المشروع، فإن أفضل ممارسة هي قراءة هذه العناصر الثلاثة معا: التغير السنوي والتغير الشهري والمكونات. لا يكفي رقم واحد معزول لفهم الصورة."
       ],
-      "sources": [],
-      "ai": false
+      "sources": [
+        {
+          "label": "HCP — Indices des prix à la consommation",
+          "url": "https://www.hcp.ma/Publications-Indices-des-prix-a-la-consommation-IPC_r350.html"
+        }
+      ],
+      "ai": true
     },
     {
-      "id": "exemple-incoterms-bases",
+      "id": "incoterms-ce-que-le-prix-ne-dit-pas",
       "status": "publie",
-      "example": true,
       "cat": "commerce",
       "author": "OMEII",
-      "date": "2026-11-26",
-      "title": "Exemple — Incoterms : ce que le prix ne dit pas",
-      "title_ar": "مثال — الإنكوتيرمز: ما لا يقوله السعر",
-      "excerpt": "Article d'exemple sur la répartition des frais et des risques entre vendeur et acheteur. À remplacer.",
-      "excerpt_ar": "مقال تجريبي حول توزيع التكاليف والمخاطر بين البائع والمشتري. سيتم استبداله.",
+      "date": "2026-11-27",
+      "title": "Incoterms : ce que le prix de vente ne dit pas",
+      "title_ar": "الإنكوتيرمز: ما لا يقوله سعر البيع",
+      "excerpt": "Deux offres au même prix peuvent coûter très différemment à l'acheteur. Les Incoterms précisent qui paie quoi, et à quel moment le risque change de mains.",
+      "excerpt_ar": "قد يكلف عرضان بالسعر نفسه المشتري بشكل مختلف تماما. تحدد الإنكوتيرمز من يتحمل ماذا، ومتى ينتقل الخطر من طرف إلى آخر.",
       "body": [
-        "Article d'exemple. Le choix de l'incoterm détermine qui paie le transport, l'assurance et les formalités, et à quel moment le risque est transféré.",
-        "Cette rubrique accueillera des notes courtes sur le commerce international et la douane."
+        "Les Incoterms sont des règles publiées par la Chambre de commerce internationale (CCI) que vendeur et acheteur peuvent choisir d'inclure dans leur contrat. Ils répartissent les obligations de livraison, les coûts (transport, assurance, formalités) et le transfert des risques.",
+        "Un même prix de marchandise n'est donc pas comparable d'une offre à l'autre. Un prix « départ usine » laisse presque tout le transport et les formalités à l'acheteur ; un prix « rendu droits acquittés » met l'essentiel à la charge du vendeur. Entre les deux, plusieurs règles se distinguent par le lieu où le risque est transféré.",
+        "Attention à ce que les Incoterms ne font pas : ils ne fixent pas le prix, ne règlent pas le transfert de propriété et ne tiennent pas lieu de contrat de transport ou d'assurance. Le lieu nommé après le terme (port, entrepôt, adresse) doit aussi être précisé avec soin.",
+        "Avant de comparer deux offres, ramenez-les à la même règle et au même lieu, puis ajoutez les coûts qui restent à votre charge. C'est ce total, et non le prix affiché, qui permet de décider."
+      ],
+      "body_ar": [
+        "الإنكوتيرمز قواعد تصدرها غرفة التجارة الدولية، ويمكن للبائع والمشتري اختيار إدراجها في عقدهما. وهي توزع التزامات التسليم والتكاليف (النقل والتأمين والإجراءات) وانتقال المخاطر.",
+        "لذلك لا يمكن مقارنة السعر نفسه للبضاعة بين عرض وآخر. فسعر «التسليم من المصنع» يترك معظم النقل والإجراءات على عاتق المشتري، بينما يضع سعر «التسليم مع أداء الرسوم» الجزء الأكبر على عاتق البائع. وبين الحالتين تختلف قواعد عدة بحسب المكان الذي ينتقل عنده الخطر.",
+        "ويجب الانتباه إلى ما لا تفعله الإنكوتيرمز: فهي لا تحدد السعر ولا تنظم انتقال الملكية ولا تغني عن عقد النقل أو التأمين. كما ينبغي تحديد المكان المذكور بعد المصطلح (ميناء أو مستودع أو عنوان) بعناية.",
+        "قبل المقارنة بين عرضين، أعيدوهما إلى القاعدة نفسها والمكان نفسه، ثم أضيفوا التكاليف التي تبقى على عاتقكم. هذا المجموع، وليس السعر المعلن، هو الذي يسمح باتخاذ القرار."
       ],
       "sources": [],
-      "ai": false
+      "ai": true
     },
     {
-      "id": "exemple-investissement-faisabilite",
+      "id": "etude-faisabilite-trois-questions",
       "status": "publie",
-      "example": true,
       "cat": "investissement",
       "author": "OMEII",
-      "date": "2026-11-25",
-      "title": "Exemple — Les trois questions d'une étude de faisabilité",
-      "title_ar": "مثال — الأسئلة الثلاثة لدراسة الجدوى",
-      "excerpt": "Article d'exemple : marché, technique, financier. À remplacer par un contenu rédigé par OMEII.",
-      "excerpt_ar": "مقال تجريبي: السوق والجانب التقني والجانب المالي. سيُستبدل بمحتوى من إعداد OMEII.",
+      "date": "2026-11-26",
+      "title": "Étude de faisabilité : trois questions avant de financer un projet",
+      "title_ar": "دراسة الجدوى: ثلاثة أسئلة قبل تمويل أي مشروع",
+      "excerpt": "Marché, technique, finances : une étude de faisabilité sérieuse répond à trois questions distinctes et teste ses hypothèses les plus fragiles.",
+      "excerpt_ar": "السوق والجانب التقني والجانب المالي: دراسة الجدوى الجادة تجيب عن ثلاثة أسئلة متمايزة وتختبر أضعف فرضياتها.",
       "body": [
-        "Article d'exemple. Une étude de faisabilité répond à trois questions : le marché existe-t-il, le projet est-il réalisable techniquement, et sa rentabilité est-elle suffisante ?"
+        "Une étude de faisabilité sert à décider si un projet mérite d'être financé, pas à le justifier. Elle répond à trois questions qui doivent rester distinctes : le marché existe-t-il, le projet est-il réalisable techniquement, et sa rentabilité est-elle suffisante au regard du risque ?",
+        "La première question porte sur la demande : qui achètera, à quel prix, face à quels concurrents, et sur la base de quelles données observées plutôt que supposées. La deuxième porte sur les moyens : technologie, localisation, ressources humaines, autorisations nécessaires et délais réalistes.",
+        "La troisième traduit les deux premières en chiffres : investissement initial, charges, recettes, besoin en fonds de roulement, puis des indicateurs comme la valeur actuelle nette, le taux de rentabilité interne et le délai de récupération. Aucun de ces indicateurs n'a de sens sans ses hypothèses.",
+        "Enfin, une bonne étude teste ses hypothèses les plus fragiles : que se passe-t-il si les ventes sont plus faibles, si les coûts montent ou si le calendrier glisse ? Un projet qui ne résiste pas à ces scénarios mérite d'être revu avant d'être financé."
+      ],
+      "body_ar": [
+        "تفيد دراسة الجدوى في تقرير ما إذا كان المشروع يستحق التمويل، وليس في تبريره. وهي تجيب عن ثلاثة أسئلة يجب أن تبقى منفصلة: هل السوق موجود؟ وهل المشروع قابل للإنجاز تقنيا؟ وهل مردوديته كافية بالنظر إلى المخاطر؟",
+        "السؤال الأول يتعلق بالطلب: من سيشتري، وبأي سعر، في مواجهة أي منافسين، وبناء على معطيات ملاحظة لا مفترضة. والثاني يتعلق بالوسائل: التكنولوجيا والموقع والموارد البشرية والتراخيص اللازمة والآجال الواقعية.",
+        "أما الثالث فيترجم الأولين إلى أرقام: الاستثمار الأولي والتكاليف والمداخيل والحاجة إلى رأس المال العامل، ثم مؤشرات مثل القيمة الحالية الصافية ومعدل المردودية الداخلي ومدة استرجاع الاستثمار. ولا معنى لأي من هذه المؤشرات دون فرضياتها.",
+        "وأخيرا، تختبر الدراسة الجيدة أضعف فرضياتها: ماذا لو كانت المبيعات أقل، أو ارتفعت التكاليف، أو تأخر الجدول الزمني؟ المشروع الذي لا يصمد أمام هذه السيناريوهات ينبغي مراجعته قبل تمويله."
       ],
       "sources": [],
-      "ai": false
+      "ai": true
     },
     {
-      "id": "exemple-breve-hcp",
+      "id": "breve-bam-taux-directeur-septembre-2026",
       "status": "publie",
-      "example": true,
       "cat": "officiel",
       "type": "breve",
-      "author": "Source : HCP",
-      "date": "2026-11-24",
-      "title": "Exemple de brève — publication du Haut-Commissariat au Plan",
-      "title_ar": "مثال لموجز — منشور المندوبية السامية للتخطيط",
-      "excerpt": "Ici s'affichera un résumé court, rédigé par OMEII, avec un lien vers la publication officielle. Le contenu de la source n'est jamais recopié.",
-      "excerpt_ar": "سيظهر هنا ملخص قصير من إعداد OMEII مع رابط نحو المنشور الرسمي. لا يتم نسخ محتوى المصدر أبدا.",
-      "sourceUrl": "https://www.hcp.ma",
+      "author": "Source : Bank Al-Maghrib",
+      "date": "2026-09-22",
+      "title": "Bank Al-Maghrib maintient son taux directeur à 2,25 %",
+      "title_ar": "بنك المغرب يبقي على سعر الفائدة الرئيسي عند 2,25 في المائة",
+      "excerpt": "Réuni le 22 septembre 2026, le Conseil de Bank Al-Maghrib a laissé son taux directeur inchangé, pour la sixième réunion consécutive. Il table sur une croissance de 4,4 % en 2026 et une inflation de 0,7 % sur l'année.",
+      "excerpt_ar": "أبقى مجلس بنك المغرب، المنعقد في 22 شتنبر 2026، على سعر الفائدة الرئيسي دون تغيير للمرة السادسة على التوالي. ويتوقع نموا بنسبة 4,4 في المائة في 2026 وتضخما بنسبة 0,7 في المائة خلال السنة.",
+      "sourceUrl": "https://www.bkam.ma/content/download/851045/9186656/CdP_ConseilBAM_T3_2026_fr.pdf",
       "sources": [],
-      "ai": false
+      "ai": true
     },
     {
-      "id": "exemple-annonce-rubrique",
+      "id": "breve-hcp-ipc-octobre-2026",
       "status": "publie",
-      "example": true,
-      "cat": "annonces",
-      "author": "OMEII",
-      "date": "2026-11-23",
-      "title": "Exemple — Ouverture de la rubrique Actualités",
-      "title_ar": "مثال — افتتاح ركن الأخبار",
-      "excerpt": "Annonce d'exemple. Les annonces officielles de l'association seront publiées ici.",
-      "excerpt_ar": "إعلان تجريبي. ستنشر هنا الإعلانات الرسمية للجمعية.",
-      "body": [
-        "Annonce d'exemple, à remplacer par une annonce réelle de l'association."
-      ],
+      "cat": "officiel",
+      "type": "breve",
+      "author": "Source : HCP (via libe.ma)",
+      "date": "2026-11-20",
+      "title": "Prix à la consommation : +1,9 % sur un an en octobre 2026",
+      "title_ar": "أسعار الاستهلاك: ارتفاع بنسبة 1,9 في المائة على أساس سنوي في أكتوبر 2026",
+      "excerpt": "Selon le Haut-Commissariat au Plan, l'indice des prix à la consommation a progressé de 1,9 % sur un an en octobre 2026, son plus haut niveau depuis février 2025, avec des hausses sur les légumes, les viandes et les carburants.",
+      "excerpt_ar": "حسب المندوبية السامية للتخطيط، ارتفع مؤشر أسعار الاستهلاك بنسبة 1,9 في المائة على أساس سنوي في أكتوبر 2026، وهو أعلى مستوى منذ فبراير 2025، مع ارتفاع أسعار الخضر واللحوم والمحروقات.",
+      "sourceUrl": "https://libe.ma/les-legumes-viandes-et-carburants-plus-chers-en-octobre-linflation-retrouve-son-plus-haut-niveau-depuis-fevrier-2025/",
       "sources": [],
-      "ai": false
+      "ai": true
     }
   ]
 }
